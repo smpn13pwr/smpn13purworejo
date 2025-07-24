@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sekolah - SMP Negeri 13 PURWOREJO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .school-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+        }
+        
+        .school-header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .school-header p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .school-logo {
+            width: 150px;
+            height: 150px;
+            border: 5px 
+        }
+        
+        /* Navigation */
+        .school-nav {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: block; /* pastikan navbar tampil */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+            
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 25;
+            width: auto;
+        }
+
+        .logo-text h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .school-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+
+        .school-nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+
+        .school-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+
+        .school-nav ul li a:hover {
+            color: #ecf0f1;
+        }
+
+        .school-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: white;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        .school-nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        
+        /* Main Content */
+        .profile-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 15px auto 0;
+        }
+        
+        .about-school {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            max-width: 400px;    /* Batasi lebar maksimal gambar */
+            height: auto;        /* Tinggi otomatis agar proporsional */
+            display: block;
+            margin: 0 auto;      /* Tengah jika ruang lebih besar */
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Visi Misi */
+        .vision-mission {
+            background-color: var(--light-color);
+            padding: 60px 0;
+        }
+        
+        .vm-container {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .vision, .mission {
+            flex: 1;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .vm-title {
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .vm-title i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+        
+        /* Facilities */
+        .facilities {
+            padding: 60px 0;
+        }
+        
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .facility-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .facility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .facility-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .facility-content {
+            padding: 20px;
+        }
+        
+        .facility-title {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Achievement */
+        .achievements {
+            background-color: var(--light-color);
+            padding: 60px 0;
+        }
+        
+        .achievement-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .achievement-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 250px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .achievement-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .achievement-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        .school-footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-title {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-info {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+                /* Tambahkan di bagian <style> */
+        .footer-links ul li a {
+            color: #3498db; /* Ganti dengan warna yang diinginkan */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: #2ecc71; /* Warna saat hover */
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .school-nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #3498db;
+                margin-top: 1rem;
+            }
+            .school-nav ul.show {
+                display: flex;
+            }
+            .school-nav ul li {
+                margin: 1rem 0 0 0;
+            }
+            .mobile-menu {
+                display: block;
+                margin-left: auto;
+        }
+}
+
+        @media (max-width: 992px) {
+            .about-school, .vm-container {
+                flex-direction: column;
+            }
+            
+            .nav-container ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .school-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .facility-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+    <!-- Navigation -->
+    <nav class="school-nav">
+    <div class="nav-container">
+        <div class="logo">
+            <img src="../image/smp13.png" alt="Logo Sekolah" style="height:50px;margin-right:1rem;">
+            <div class="logo-text">
+                <h1 style="font-size:1.2rem;margin-bottom:0;">SMP NEGERI 13 PURWOREJO</h1>
+            </div>
+        </div>
+        <div class="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul>
+            <li><a href="../index.html#home">Beranda</a></li>
+            <li><a href="profil sekolah.html">Profil</a></li>
+            <li><a href="program adiwiyata.html">Program</a></li>
+            <li><a href="pengumuman.html">Pengumuman</a></li>
+            <li><a href="../index.html#galeri">Galeri</a></li>
+        </ul>
+    </div>
+</nav>
+<!-- Header -->
+    <header class="school-header">
+        <img src="image/smp13.png" alt="Logo Sekolah" class="school-logo">
+        <h1>SMP NEGERI 13 PURWOREJO</h1>
+        <p>Sekolah Berprestasi, Berkarakter, dan Berwawasan Global</p>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Profil Sekolah -->
+        <section id="profile" class="profile-section">
+            <h2 class="section-title">Profil Sekolah</h2>
+            <div class="about-school">
+                <div class="about-text">
+                    <p>SMP Negeri 13 Purworejo merupakan salah satu sekolah menengah pertama negeri di Kabupaten Purworejo, Jawa Tengah, yang berkomitmen menyediakan pendidikan berkualitas dengan mengedepankan nilai-nilai karakter dan lingkungan. SMP Negeri 13 Purworejo memiliki fasilitas 21 ruang belajar, lab Ipa dengan dengan alat praktikumnya yang lengkap, serta perpustakaan dengan berbagai koleksi buku sebagai penunjang pembelajaran siswa-siswinya.</p>
+                    <p>SMP Negeri 13 Purworejo memiliki program unggulan Adiwiyata "Satu Siswa Satu Tanaman" setiap siswa wajib menanam dan merawat 1 pohon di sekolah, Prestasi dari program Adiwiyata mendapatkan penghargaan sekolah Adiwiyata Tingkat Provinsi dan melanjutkan ke tingat Nasional.</p>
+                </div>
+                <div class="about-image">
+                    <img src="image/depan.jpg" alt="Gedung Sekolah">
+                </div>
+            </div>
+            
+            <div class="school-data">
+                <h3>Identitas Sekolah</h3>
+                <ul>
+                    <li><strong>NPSN:</strong> 20306110</li>
+                    <li><strong>Alamat:</strong> Jl. Tentara Pelajar No. 02 Kutoarjo, Kec. Kutoarjo, Kabupaten Purworejo, Jawa Tengah 54214</li>
+                    <li><strong>Status:</strong> Negeri</li>
+                    <li><strong>Akreditasi:</strong> Unggul</li>
+                    <li><strong>Kurikulum:</strong> Kurikulum Merdeka</li>
+                    <li><strong>Kepala Sekolah:</strong> Achmad Yulianto, S.Pd.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Visi Misi -->
+        <section id="visi-misi" class="vision-mission">
+            <div class="container">
+                <h2 class="section-title">Visi dan Misi</h2>
+                <div class="vm-container">
+                    <div class="vision">
+                        <h3 class="vm-title"><i class="fas fa-eye"></i> Visi</h3>
+                        <p>"Terwujudnya lulusan yang cerdas, berprestasi, berdaya saing, disiplin, mandiri dan berbudaya lingkungan."</p>
+                    </div>
+                    <div class="mission">
+                        <h3 class="vm-title"><i class="fas fa-bullseye"></i> Misi</h3>
+                        <ol>
+                            <li>Mendukung seluruh kegiatan yang sifatnya positif dan berdasarkan iman dan taqwa</li>
+                            <li>Menanamkan sikap berbudi pekerti luhur dalam lingkungan sehari-hari</li>
+                            <li>Memberikan konseling pendisiplinan terhadap murid secara berkala</li>
+                            <li>Memberlakukan program kegiatan percakapan berbahasa Inggris pada hari-hari tertentu</li>
+                            <li>Menumbuhkan kepedulian terhadap lingkungan melalui program adiwiyata</li>
+                            <li>Menyelenggarakan kegiatan berbasis keterampilan dan kemandirian</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Fasilitas -->
+        <section id="fasilitas" class="facilities">
+            <div class="container">
+                <h2 class="section-title">Fasilitas Sekolah</h2>
+                <div class="facility-grid">
+                    <div class="facility-card">
+                        <img src="image/ruang kelas.jpeg" alt="Ruang Kelas" class="facility-img">
+                        <div class="facility-content">
+                            <h3 class="facility-title">Ruang Kelas Nyaman</h3>
+                            <p>30 ruang kelas ber-AC dengan kapasitas 32 siswa, dilengkapi LCD proyektor dan sound system.</p>
+                        </div>
+                    </div>
+                    <div class="facility-card">
+                        <img src="image/lab-ipa.jpg" alt="Laboratorium" class="facility-img">
+                        <div class="facility-content">
+                            <h3 class="facility-title">Laboratorium Lengkap</h3>
+                            <p>Laboratorium IPA, Komputer, Bahasa, dan Robotika dengan peralatan modern.</p>
+                        </div>
+                    </div>
+                    <div class="facility-card">
+                        <img src="image/perpus.jpeg" alt="Perpustakaan" class="facility-img">
+                        <div class="facility-content">
+                            <h3 class="facility-title">Perpustakaan</h3>
+                            <p>Koleksi lebih dari 10.000 buku dan akses ke berbagai e-book dan jurnal online.</p>
+                        </div>
+                    </div>
+                    <div class="facility-card">
+                        <img src="image/lapangan.jpeg" alt="Lapangan Olahraga" class="facility-img">
+                        <div class="facility-content">
+                            <h3 class="facility-title">Lapangan Olahraga</h3>
+                            <p>Lapangan basket, futsal, voli, dan atletik dengan permukaan berkualitas.</p>
+                        </div>
+                    </div>
+                    <div class="facility-card">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Aula Serbaguna" class="facility-img">
+                        <div class="facility-content">
+                            <h3 class="facility-title">Aula Serbaguna</h3>
+                            <p>Aula berkapasitas 500 orang untuk berbagai kegiatan sekolah.</p>
+                        </div>
+                    </div>
+                    <div class="facility-card">
+                        <img src="image/kantin.jpg" alt="Kantin Sehat" class="facility-img">
+                        <div class="facility-content">
+                            <h3 class="facility-title">Kantin Sehat</h3>
+                            <p>Kantin dengan makanan bergizi dan harga terjangkau.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Prestasi -->
+        <section id="prestasi" class="achievements">
+            <div class="container">
+                <h2 class="section-title">Prestasi Sekolah</h2>
+                <div class="achievement-container">
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-number">42</div>
+                        <div class="achievement-text">Juara Tingkat Nasional</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-number">128</div>
+                        <div class="achievement-text">Juara Tingkat Provinsi</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-number">95%</div>
+                        <div class="achievement-text">Kelulusan</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="achievement-number">78%</div>
+                        <div class="achievement-text">Diterima di SMA Favorit</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer id="kontak" class="school-footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <img src="image/smp13.png" alt="Logo Sekolah" class="footer-logo">
+                    <p>SMP Negeri 13 PURWOREJO adalah sekolah unggulan yang berkomitmen untuk memberikan pendidikan terbaik bagi generasi penerus bangsa.</p>
+                    <div class="social-links">
+                        <a href="https://www.tiktok.com/@spenggalaspwr_"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/smp_n13/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@spenggalasmedia4158"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-title">Kontak Kami</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Jl. Tentara Pelajar No. 02 Kutoarjo, Kec. Kutoarjo, Kabupaten Purworejo, Jawa Tengah 54214</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>(021) 1234-5678</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>pwrsmpn13@gmail.com</span>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="#">Penerimaan Peserta Didik Baru</a></li>
+                        <li><a href="#">Kalender Akademik</a></li>
+                        <li><a href="#">Galeri Kegiatan</a></li>
+                        <li><a href="#">Berita Sekolah</a></li>
+                        <li><a href="#">Download Brosur</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 SMP Negeri 13 PURWOREJO. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        <script>
+    // Mobile Menu Toggle
+    document.querySelector('.mobile-menu').addEventListener('click', function() {
+        document.querySelector('.school-nav ul').classList.toggle('show');
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+</body>
+</html>

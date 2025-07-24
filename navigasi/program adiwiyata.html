@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Program Adiwiyata SMP Negeri 13 Purworejo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2ecc71;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Navbar */
+        .school-nav {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 1rem;
+            display: block;
+        }
+        .logo-text h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        .school-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+        .school-nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        .school-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+        .school-nav ul li a:hover {
+            color: #ecf0f1;
+        }
+        .school-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: white;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        .school-nav ul li a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .school-nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #3498db;
+                margin-top: 1rem;
+            }
+            .school-nav ul.show {
+                display: flex;
+            }
+            .school-nav ul li {
+                margin: 1rem 0 0 0;
+            }
+            .mobile-menu {
+                display: block;
+                margin-left: auto;
+            }
+        }
+        /* Section Title */
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+            font-weight: bold;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            margin-top: 8px;
+            border-radius: 2px;
+        }
+        /* About Section */
+        .profile-section {
+            margin-bottom: 40px;
+        }
+        .about-school {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 2;
+            min-width: 250px;
+        }
+        .about-text ul {
+            margin-left: 18px;
+            margin-top: 10px;
+        }
+        .about-image {
+            flex: 1;
+            min-width: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .about-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+        }
+        /* Facilities / Gallery */
+        .facilities {
+            margin-bottom: 40px;
+        }
+        .facility-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+        .facility-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            overflow: hidden;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+        .facility-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        .facility-img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .facility-content {
+            padding: 16px;
+            flex: 1;
+        }
+        .facility-title {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        /* Achievements */
+        .achievements {
+            background-color: var(--light);
+            padding: 40px 0;
+            margin-bottom: 40px;
+        }
+        .achievement-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+        .achievement-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            width: 220px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .achievement-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        .achievement-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .achievement-text {
+            font-size: 1rem;
+            color: #444;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #2e8b57;
+            color: white;
+            border-radius: 8px 8px 0 0;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .about-school {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .about-image img {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px 5px 0 5px;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .facility-grid {
+                grid-template-columns: 1fr;
+            }
+            .achievement-container {
+                flex-direction: column;
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="school-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../image/smp13.png" alt="Logo Sekolah">
+                <div class="logo-text">
+                    <h1 style="font-size:1.2rem;margin-bottom:0;">SMP NEGERI 13 PURWOREJO</h1>
+                </div>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul>
+                <li><a href="../index.html#home">Beranda</a></li>
+                <li><a href="profil sekolah.html">Profil</a></li>
+                <li><a href="program adiwiyata.html">Program</a></li>
+                <li><a href="pengumuman.html">Pengumuman</a></li>
+                <li><a href="../index.html#galeri">Galeri</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Judul & Deskripsi -->
+        <section class="profile-section">
+            <h2 class="section-title">Program Adiwiyata</h2>
+            <div class="about-school">
+                <div class="about-text">
+                    <p> Adiwiyata adalah program dari Kementerian Lingkungan Hidup dan Kementerian Pendidikan Nasional yang bertujuan untuk mendorong terciptanya pengetahuan dan kesadaran warga sekolah dalam upaya pelestarian lingkungan hidup. Program ini diharapkan dapat menciptakan kondisi yang baik bagi sekolah untuk menjadi tempat pembelajaran dan penyadaran warga sekolah.</p>
+                    <p> Program Adiwiyata di SMP Negeri 13 Purworejo bertujuan untuk membentuk karakter siswa yang peduli lingkungan, mengurangi dampak negatif terhadap lingkungan, dan meningkatkan kualitas hidup di sekolah. Dengan melibatkan seluruh warga sekolah, program ini menciptakan lingkungan yang asri, sehat, dan nyaman bagi proses belajar mengajar.
+                        Di SMP Negeri 13 Purworejo, program Adiwiyata dilaksanakan dengan melibatkan seluruh warga sekolah termasuk siswa, guru, staff, dan komite sekolah untuk bersama-sama menciptakan lingkungan sekolah yang asri, sehat, dan nyaman. </p>
+                    
+                    <ul>
+                        <li><strong>Penghijauan Sekolah:</strong> Setiap kelas merawat tanaman di lingkungan sekolah.</li>
+                        <li><strong>Bank Sampah:</strong> Siswa memilah sampah, hasil daur ulang untuk kegiatan lingkungan.</li>
+                        <li><strong>Pembuatan Kompos:</strong> Sampah organik diolah menjadi kompos untuk tanaman sekolah.</li>
+                        <li><strong>Hemat Energi & Air:</strong> Penghematan listrik dan air di seluruh area sekolah.</li>
+                        <li><strong>Pembelajaran Berbasis Lingkungan:</strong> Materi lingkungan diintegrasikan dalam pembelajaran.</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="image/adiwiyata.jpg" alt="Kegiatan Adiwiyata">
+                </div>
+            </div>
+        </section>
+
+        <!-- Galeri Kegiatan -->
+        <section class="facilities">
+            <h2 class="section-title">Galeri Kegiatan Adiwiyata</h2>
+            <div class="facility-grid">
+                <div class="facility-card">
+                    <img src="image/penghijauan.jpg" alt="Penghijauan" class="facility-img">
+                    <div class="facility-content">
+                        <h3 class="facility-title">Penghijauan</h3>
+                        <p>Penanaman pohon dan perawatan tanaman oleh siswa dan guru.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <img src="image/bank sampah.jpg" alt="Bank Sampah" class="facility-img">
+                    <div class="facility-content">
+                        <h3 class="facility-title">Bank Sampah</h3>
+                        <p>Kegiatan memilah dan mendaur ulang sampah di sekolah.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <img src="image/pembuatan kompos.jpg" alt="Kompos" class="facility-img">
+                    <div class="facility-content">
+                        <h3 class="facility-title">Pembuatan Kompos</h3>
+                        <p>Pemanfaatan sampah organik menjadi pupuk kompos.</p>
+                    </div>
+                </div>
+                <div class="facility-card">
+                    <img src="image/pembelajaran lingkunga.jpg" alt="Eco Class" class="facility-img">
+                    <div class="facility-content">
+                        <h3 class="facility-title">Pembelajaran Lingkungan</h3>
+                        <p>Kegiatan belajar di luar kelas mengenal lingkungan sekitar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prestasi Adiwiyata -->
+        <section class="achievements">
+            <div class="container">
+                <h2 class="section-title">Prestasi Adiwiyata</h2>
+                <div class="achievement-container">
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-number">1</div>
+                        <div class="achievement-text">Juara 1 Adiwiyata Kabupaten</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="achievement-number">Finalis</div>
+                        <div class="achievement-text">Adiwiyata Provinsi</div>
+                    </div>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="achievement-number">Eco School</div>
+                        <div class="achievement-text">Penghargaan DLH</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dukungan Masyarakat -->
+        <section class="profile-section">
+            <h2 class="section-title">Dukungan Masyarakat</h2>
+            <div class="about-school">
+                <div class="about-text">
+                    <p>Program Adiwiyata di SMP Negeri 13 Purworejo tidak hanya melibatkan warga sekolah, tetapi juga mendapat dukungan dari:</p>
+                    <ul>
+                        <li>Dinas Pendidikan Kabupaten Purworejo</li>
+                        <li>Dinas Lingkungan Hidup Kabupaten Purworejo</li>
+                        <li>Komite Sekolah dan Orang Tua Siswa</li>
+                        <li>Lembaga Swadaya Masyarakat Peduli Lingkungan</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="image/Screenshot 2025-07-24 122338.png" alt="Dukungan Masyarakat">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="kontak">
+        <p>© 2025 SMP Negeri 13 Purworejo - Program Adiwiyata</p>
+        <p>Jl. Tentara Pelajar No. 02 Kutoarjo, Kec. Kutoarjo, Kabupaten Purworejo, Jawa Tengah 54214</p>
+        <p>Email: pwrsmpn13@gmail.com | Telp: (021) 1234-5678</p>
+    </footer>
+    <script>
+        // Mobile Menu

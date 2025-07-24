@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengumuman - SMP Negeri 13 PURWOREJO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 0 20px;
+        }
+        /* Navbar */
+        .school-nav {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: block;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            height: 50px;
+            width: auto;
+            margin-right: 1rem;
+            display: block;
+        }
+        .logo-text h1 {
+            font-size: 1.2rem;
+            margin-bottom: 0;
+        }
+        .logo-text p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        .school-nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+        }
+        .school-nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        .school-nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 0;
+        }
+        .school-nav ul li a:hover {
+            color: #ecf0f1;
+        }
+        .school-nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: white;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        .school-nav ul li a:hover::after {
+            width: 100%;
+        }
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+            color: white;
+            font-size: 1.5rem;
+        }
+        @media (max-width: 992px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .school-nav ul {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: #3498db;
+                margin-top: 1rem;
+            }
+            .school-nav ul.show {
+                display: flex;
+            }
+            .school-nav ul li {
+                margin: 1rem 0 0 0;
+            }
+            .mobile-menu {
+                display: block;
+                margin-left: auto;
+            }
+        }
+        /* Pengumuman Section */
+        .announcement-section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+            padding: 40px 30px;
+            margin: 40px 0;
+        }
+        .announcement-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .announcement-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            margin: 12px auto 0;
+            border-radius: 2px;
+        }
+        .announcement-list {
+            list-style: none;
+            padding: 0;
+        }
+        .announcement-item {
+            padding: 18px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+        }
+        .announcement-item:last-child {
+            border-bottom: none;
+        }
+        .announcement-icon {
+            color: var(--accent-color);
+            font-size: 1.6rem;
+            margin-top: 2px;
+        }
+        .announcement-content {
+            flex: 1;
+        }
+        .announcement-content h4 {
+            margin-bottom: 6px;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+        }
+        .announcement-content p {
+            font-size: 1rem;
+            color: #444;
+        }
+        .announcement-date {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 4px;
+        }
+        /* Footer */
+        .school-footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 15px;
+            margin-top: 40px;
+        }
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .footer-logo {
+            width: 100px;
+            margin-bottom: 18px;
+        }
+        .footer-title {
+            color: var(--secondary-color);
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        .footer-links ul li a {
+            color: #3498db;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-links ul li a:hover {
+            color: #2ecc71;
+        }
+        .social-links {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+        .social-links a {
+            color: white;
+            font-size: 1.3rem;
+            transition: color 0.3s;
+        }
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        .copyright {
+            text-align: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+        }
+        @media (max-width: 700px) {
+            .announcement-section {
+                padding: 20px 8px;
+            }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="school-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="../image/smp13.png" alt="Logo Sekolah">
+                <div class="logo-text">
+                    <h1 style="font-size:1.2rem;margin-bottom:0;">SMP NEGERI 13 PURWOREJO</h1>
+                </div>
+            </div>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul>
+                <li><a href="../index.html#home">Beranda</a></li>
+                <li><a href="profil sekolah.html">Profil</a></li>
+                <li><a href="program adiwiyata.html">Program</a></li>
+                <li><a href="pengumuman.html">Pengumuman</a></li>
+                <li><a href="../index.html#galeri">Galeri</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="announcement-section">
+            <h2 class="announcement-title">Pengumuman Terbaru</h2>
+            <ul class="announcement-list">
+                <li class="announcement-item">
+                    <span class="announcement-icon"><i class="fas fa-bullhorn"></i></span>
+                    <div class="announcement-content">
+                        <h4>Penerimaan Peserta Didik Baru (PPDB) 2025</h4>
+                        <p>Pendaftaran PPDB SMP Negeri 13 Purworejo dibuka mulai 1 Mei hingga 30 Juni 2025. Silakan cek syarat dan alur pendaftaran di menu PPDB.</p>
+                        <div class="announcement-date"><i class="far fa-calendar-alt"></i> 25 April 2025</div>
+                    </div>
+                </li>
+                <li class="announcement-item">
+                    <span class="announcement-icon"><i class="fas fa-bullhorn"></i></span>
+                    <div class="announcement-content">
+                        <h4>Libur Kenaikan Kelas</h4>
+                        <p>Libur kenaikan kelas dimulai tanggal 24 Juni 2025 dan masuk kembali pada 15 Juli 2025. Selamat berlibur dan tetap jaga kesehatan!</p>
+                        <div class="announcement-date"><i class="far fa-calendar-alt"></i> 20 Juni 2025</div>
+                    </div>
+                </li>
+                <li class="announcement-item">
+                    <span class="announcement-icon"><i class="fas fa-bullhorn"></i></span>
+                    <div class="announcement-content">
+                        <h4>Pengambilan Raport Semester Genap</h4>
+                        <p>Pengambilan raport semester genap dilaksanakan pada 23 Juni 2025 di ruang kelas masing-masing mulai pukul 08.00 WIB.</p>
+                        <div class="announcement-date"><i class="far fa-calendar-alt"></i> 18 Juni 2025</div>
+                    </div>
+                </li>
+                <li class="announcement-item">
+                    <span class="announcement-icon"><i class="fas fa-bullhorn"></i></span>
+                    <div class="announcement-content">
+                        <h4>Pengumuman Kelulusan Kelas IX</h4>
+                        <p>Pengumuman kelulusan kelas IX akan diumumkan secara online pada 10 Juni 2025 pukul 10.00 WIB melalui website sekolah.</p>
+                        <div class="announcement-date"><i class="far fa-calendar-alt"></i> 8 Juni 2025</div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer id="kontak" class="school-footer">
+        <div class="container">
+            <div class="footer-container">
+                <div>
+                    <img src="../image/smp13.png" alt="Logo Sekolah" class="footer-logo">
+                    <p>SMP Negeri 13 PURWOREJO adalah sekolah unggulan yang berkomitmen untuk memberikan pendidikan terbaik bagi generasi penerus bangsa.</p>
+                    <div class="social-links">
+                        <a href="https://www.tiktok.com/@spenggalaspwr_"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.instagram.com/smp_n13/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@spenggalasmedia4158"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="footer-title">Kontak Kami</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Tentara Pelajar No. 02 Kutoarjo, Kec. Kutoarjo, Kabupaten Purworejo, Jawa Tengah 54214</p>
+                    <p><i class="fas fa-phone"></i> (021) 1234-5678</p>
+                    <p><i class="fas fa-envelope"></i> pwrsmpn13@gmail.com</p>
+                </div>
+                <div class="footer-links">
+                    <h3 class="footer-title">Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="profil sekolah.html">Profil Sekolah</a></li>
+                        <li><a href="program adiwiyata.html">Program Adiwiyata</a></li>
+                        <li><a href="pengumuman.html">Pengumuman</a></li>
+                        <li><a href="../index.html#galeri">Galeri Kegiatan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 SMP Negeri 13 PURWOREJO. Semua Hak Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.school-nav ul').classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
